@@ -1,5 +1,9 @@
 working in progress
 
+# Preview
+
+<video src=https://user-images.githubusercontent.com/8663061/234648884-744f41a7-c4b3-4913-a8ad-1ba10345481f.mp4 />
+
 <!-- ↑→↓← -->
 
 # Talkback standard gestures on Android 13
