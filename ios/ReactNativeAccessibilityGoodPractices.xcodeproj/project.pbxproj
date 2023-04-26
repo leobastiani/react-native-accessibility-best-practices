@@ -14,6 +14,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-ReactNativeAccessibilityGoodPractices-ReactNativeAccessibilityGoodPracticesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ReactNativeAccessibilityGoodPractices-ReactNativeAccessibilityGoodPracticesTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		D02737D429F84560002A5DD1 /* GameplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02737D129F84560002A5DD1 /* GameplayKit.framework */; };
+		D02737D529F84560002A5DD1 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02737D229F84560002A5DD1 /* GameController.framework */; };
+		D02737D629F84560002A5DD1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02737D329F84560002A5DD1 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-ReactNativeAccessibilityGoodPractices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeAccessibilityGoodPractices.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ReactNativeAccessibilityGoodPractices/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ReactNativeAccessibilityGoodPractices-ReactNativeAccessibilityGoodPracticesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeAccessibilityGoodPractices-ReactNativeAccessibilityGoodPracticesTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeAccessibilityGoodPractices-ReactNativeAccessibilityGoodPracticesTests/Pods-ReactNativeAccessibilityGoodPractices-ReactNativeAccessibilityGoodPracticesTests.release.xcconfig"; sourceTree = "<group>"; };
+		D02737D129F84560002A5DD1 /* GameplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameplayKit.framework; path = System/Library/Frameworks/GameplayKit.framework; sourceTree = SDKROOT; };
+		D02737D229F84560002A5DD1 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
+		D02737D329F84560002A5DD1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -59,6 +65,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02737D429F84560002A5DD1 /* GameplayKit.framework in Frameworks */,
+				D02737D529F84560002A5DD1 /* GameController.framework in Frameworks */,
+				D02737D629F84560002A5DD1 /* GameKit.framework in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-ReactNativeAccessibilityGoodPractices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +108,9 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D02737D229F84560002A5DD1 /* GameController.framework */,
+				D02737D329F84560002A5DD1 /* GameKit.framework */,
+				D02737D129F84560002A5DD1 /* GameplayKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-ReactNativeAccessibilityGoodPractices.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-ReactNativeAccessibilityGoodPractices-ReactNativeAccessibilityGoodPracticesTests.a */,

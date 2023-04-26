@@ -1,0 +1,1 @@
+- accessibilityRole é importante ([role](https://reactnative.dev/docs/accessibility#role) deve ser usado no lugar)

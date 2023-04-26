@@ -1,118 +1,58 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, {useState} from 'react';
+import {Button, Pressable, SafeAreaView, Text, View} from 'react-native';
+import {A11yOrder, A11yProvider, useFocusOrder} from 'react-native-a11y';
+import Modal from 'react-native-modal';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+export default () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <A11yProvider>
+      <App />
+    </A11yProvider>
   );
-}
+};
+function App() {
+  const [isModalVisible, setModalVisible] = useState(false);
 
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
 
+  const {a11yOrder, refs} = useFocusOrder(3);
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <SafeAreaView>
+      <Modal isVisible={isModalVisible}>
+        <View style={{backgroundColor: 'white'}}>
+          <Text>Paragrafo um</Text>
+          <Text>Segundo parágrafo</Text>
+          <Button title="Esconder" onPress={toggleModal} />
         </View>
-      </ScrollView>
+      </Modal>
+      <View>
+        <A11yOrder a11yOrder={a11yOrder}>
+          <Pressable
+            onPress={toggleModal}
+            style={{backgroundColor: 'red', height: 100, width: 100}}
+            accessibilityLabel="Segundo"
+            ref={refs[1]}
+          />
+          <View style={{height: 100}} />
+          <View
+            style={{backgroundColor: 'blue', height: 100, width: 100}}
+            accessibilityLabel="Primeiro"
+            accessibilityLanguage="en"
+            ref={refs[0]}
+          />
+          <View style={{height: 100}} />
+          <View
+            style={{backgroundColor: 'green', height: 100, width: 100}}
+            accessibilityLabel="Terceiro"
+            ref={refs[2]}
+          />
+        </A11yOrder>
+        <View style={{height: 100}} />
+        <Text>Some text</Text>
+        <Text accessibilityLanguage="pt">Meu nome é Leonardo</Text>
+      </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
