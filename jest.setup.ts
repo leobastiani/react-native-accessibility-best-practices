@@ -19,7 +19,6 @@ jest.mock('react-native-a11y/lib/commonjs/modules', () => {
   return {
     __esModule: true,
     A11yModule,
-    default: {A11yModule},
   };
 });
 
