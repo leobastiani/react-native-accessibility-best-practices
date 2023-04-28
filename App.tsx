@@ -2,13 +2,7 @@
 
 import {faker} from '@faker-js/faker/locale/pt_BR';
 import _ from 'lodash';
-import React, {
-  RefCallback,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, {RefObject, useEffect, useRef, useState} from 'react';
 import {
   Button,
   Keyboard,
@@ -22,6 +16,7 @@ import {
   A11yModule,
   A11yOrder,
   A11yProvider,
+  useCombinedRef,
   useFocusOrder,
 } from 'react-native-a11y';
 
@@ -41,19 +36,13 @@ type Message = {
 function Message({
   content,
   position,
-  a11yOrderRef: ref,
   lastMessageRef,
 }: Message & {
-  a11yOrderRef: RefCallback<View>;
   lastMessageRef: RefObject<View>;
 }) {
   return (
     <View
-      ref={e => {
-        ref?.(e);
-        // @ts-expect-error
-        lastMessageRef!.current = e;
-      }}
+      ref={lastMessageRef}
       accessible
       style={{padding: 10, flexDirection: 'row'}}>
       {position === 'right' && <View style={{width: '20%'}} />}
@@ -74,24 +63,21 @@ function App() {
   const [messages, setMessages] = useState<Message[]>(
     Array.from({length: 10}).map(() => createRandomMessage()),
   );
-  useEffect(() => {
-    scrollViewRef.current?.scrollToEnd({animated: false});
-  }, []);
   const [input, setInput] = useState('');
-  const scrollViewRef = useRef<ScrollView>(null);
   const lastMessageRef = useRef<View>(null);
 
-  const {a11yOrder, refs} = useFocusOrder(5 + messages.length);
+  const {a11yOrder, refs} = useFocusOrder(5);
+  const [scrollViewRef, setScrollViewRef] = useCombinedRef<ScrollView>(refs[4]);
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      scrollViewRef.current?.scrollToEnd({animated: false});
+    });
+  }, [scrollViewRef]);
+
   return (
     <SafeAreaView style={{flex: 1}}>
-      <A11yOrder
-        style={{flex: 1}}
-        a11yOrder={{
-          ...a11yOrder,
-          onLayout(...args) {
-            a11yOrder.onLayout(...args);
-          },
-        }}>
+      <A11yOrder style={{flex: 1}} a11yOrder={a11yOrder}>
         <Text ref={refs[0]}>Você tem uma urgência</Text>
         <View style={{height: 20}} />
         <View ref={refs[1]} accessible>
@@ -99,17 +85,10 @@ function App() {
           <Text>Companheiro</Text>
         </View>
         <View style={{height: 20}} />
-        <ScrollView
-          ref={ref => {
-            // @ts-expect-error
-            scrollViewRef.current = ref;
-            refs[4](ref);
-          }}
-          style={{flex: 1}}>
+        <ScrollView ref={setScrollViewRef} style={{flex: 1}}>
           {messages.map((message, index) => (
             <Message
               lastMessageRef={lastMessageRef}
-              a11yOrderRef={refs[index + 5]}
               key={index}
               content={message.content}
               position={message.position}
@@ -146,10 +125,10 @@ function App() {
                   createRandomMessage(),
                 ]);
               }
-              scrollViewRef.current?.scrollToEnd();
               setInput('');
               Keyboard.dismiss();
               requestAnimationFrame(() => {
+                scrollViewRef.current?.scrollToEnd();
                 requestAnimationFrame(() => {
                   requestAnimationFrame(() => {
                     A11yModule.setA11yFocus(lastMessageRef);
