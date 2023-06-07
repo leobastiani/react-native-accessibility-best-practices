@@ -14,7 +14,7 @@
     "@gympass/yoga-system": "^0.11.0",
     "lodash": "^4.17.21",
     "react": "18.2.0",
-    "react-native": "0.71.7",
+    "react-native": "0.71.8",
     "react-native-a11y": "^0.3.1",
     "react-native-modal": "^13.0.1"
   },
